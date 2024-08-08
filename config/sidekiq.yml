@@ -1,0 +1,20 @@
+# configuration file for Sidekiq
+:concurrency: 20
+production:
+    :concurrency: 20
+test:
+    :concurrency: 20
+demo:
+    :concurrency: 20
+#  :concurrency:
+#  :pidfile: <%= ENV['sidekiq_pid'] %>
+#  :logfile: <%= ENV['sidekiq_log'] %>
+##:limits:
+#  index_solr: 2
+:process_limits:
+    lower: 20
+:queues:
+#  - capture_solr_index
+- mailers
+- default
+- lower

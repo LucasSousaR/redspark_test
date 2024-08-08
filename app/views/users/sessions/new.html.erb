@@ -1,0 +1,106 @@
+
+<style>
+    .page-wrapper{
+        min-height: 100vh;
+    }
+  .espresso{
+      background-color: #3b0079;
+  }
+    .btn-info {
+        color: #fff;
+        background-color: #00bcff;
+        border-color: #00bcff;
+    }
+</style>
+
+
+
+<div class="block-center wd-xl espresso page-wrapper">
+  <div class="row ">
+    <div class="col-lg-12">
+      <div class="d-flex justify-content-center ">
+        <div class="col-lg-6">
+          <div style="padding: 16rem !important;">
+            <div class="text-center" style="margin-block: 30px;">
+              <a href="#">
+                <img class="block-center rounded"  style="width: 80%;" src=" https://cdn.prod.website-files.com/6508b54accf2fa0ede086e1a/6511d4247a3cea68ae1f3e74_Marca%20Espresso%20Branca.svg" alt="logo" />
+              </a>
+
+
+            </div>
+            <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), wrapper: :login_form) do |f| %>
+              <%= f.input :email, required: true, autofocus: true, input_html: { autocomplete: "email" } do %>
+                <div class="input-group with-focus">
+                  <%= f.input_field :email, class: "form-control border-right-0" %>
+                  <div class="input-group-append">
+              <span class="input-group-text text-muted bg-transparent border-left-0">
+                <em class="fa fa-envelope"></em>
+              </span>
+                  </div>
+                </div>
+              <% end %>
+              <%= f.input :password, required: true, autofocus: true, input_html: { autocomplete: "current-password" } do %>
+                <div class="input-group with-focus">
+                  <%= f.input_field :password, class: "form-control border-right-0" %>
+                  <div class="input-group-append">
+              <span class="input-group-text text-muted bg-transparent border-left-0">
+                <em class="fa fa-lock"></em>
+              </span>
+                  </div>
+                </div>
+              <% end %>
+
+              <!--        We will not use rememberable for now-->
+              <!--        <div class="clearfix">-->
+              <%# if devise_mapping.rememberable? %>
+              <%#= f.input :remember_me, as: :boolean, wrapper: :checkbox_simple_form, wrapper_html: { class: 'float-left mt-0'} do %>
+              <!--              <label for="user[remember_me]">-->
+              <%#= f.input_field :remember_me %>
+              <!--                <span class="fa fa-check"></span>Remember Me-->
+              <!--              </label>-->
+              <%# end %>
+              <%# end %>
+              <!--          <div class="float-right"><a class="text-muted" href="/pages/recover">Forgot your password?</a></div>-->
+              <!--        </div>-->
+              <!--        <div class="clearfix">-->
+              <!--          <div class="checkbox c-checkbox float-left mt-0">-->
+              <!--            <label>-->
+              <!--              <input type="checkbox" value="" name="remember" />-->
+              <!--              <span class="fa fa-check"></span>Remember Me</label>-->
+              <!--          </div>-->
+              <!--          <div class="float-right"><a class="text-muted" href="/pages/recover">Forgot your password?</a>-->
+              <!--          </div>-->
+              <!--        </div>-->
+
+                <%= f.button :submit, "Login", class: 'btn btn-block mt-3' %>
+
+              <%#= f.button :submit, "Esqueceu sua senha?", class: 'btn btn-link' %>
+            <% end %>
+
+            <hr>
+            <div class="text-center">
+              <a class="small"  style="color: #ffffff" href="<%#= forgot_password_examples_path %>">Forgot Password?</a>
+            </div>
+            <div class="text-center">
+              <a class="small"  style="color: #ffffff" href="<%#= register_examples_path %>">Create an Account!</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--<div class="col-lg-6 d-none d-lg-block bg-login-image"></div>-->
+
+  </div>
+</div>
+
+
+
+
+
+<%= content_for(:vendor_js_area) do %>
+  <script>
+
+      $(function () {
+      });
+  </script>
+<% end %>

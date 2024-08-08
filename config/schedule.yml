@@ -1,0 +1,23 @@
+#apartment_company:
+#cron: "0 */1 * * *"
+ #cron: "*/1 * * * *"
+ #class: "ApartmentCompanyJob"
+
+get_all_data_contacts:
+  #cron: "0 */1 * * *"
+  cron: "*/30 * * * *"
+  class: "GetAllDataContactsJob"
+
+
+# #https://crontab.guru/#*/1_*_*_*_*
+
+
+
+
+
+
+
+
+
+
+

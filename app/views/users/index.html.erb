@@ -1,0 +1,46 @@
+<%= breadcrumb(true) %>
+
+<%= index_search_form_for(@q, { }, { submit: false }) do |f| %>
+
+    <div class="col-xl-12">
+      <%= f.input :name_or_email_cont, required: false, as: :string %>
+    </div>
+    <div class="clearfix">
+
+      <div class="input-group input-daterange">
+
+        <div class="col-xl-4">
+          <%= f.input :role_id_eq, collection: Role.accessible_by(current_ability).all.map{ |i| [i.name, i.id] }, include_blank: 'Todos', required: false  %>
+        </div>
+        <div class="col-xl-4">
+          <%= f.input :date_select_order_status, collection: [['Liberado', 'locked_at_unlock'], ['Bloqueado', 'locked_at']],  include_blank: 'Todos', required: false ,prompt: false %>
+        </div>
+        <div class="col-xl-4">
+          <%= f.input :locked_at_lteq, required: false, as: :string, input_html: { value: f.object.locked_at_lteq.nil? ? l(Date.today) : l(f.object.locked_at_lteq, format: :date_only) } %>
+        </div>
+      </div>
+
+
+      <div class="btn-group float-right">
+        <%= f.button :submit, t('action.search'), class: 'btn btn-success' %>
+      </div>
+    </div>
+<% end %>
+
+<br>
+
+<%= index_table_for(@items, actions: %w(show edit block)) do |t| %>
+    <% t.column :name %>
+    <% t.column :email %>
+
+<% end %>
+
+
+<%= content_for(:vendor_js_area) do %>
+
+  <script>
+    $(function () {
+      $('.q_locked_at_lteq').css('display', 'none');
+    });
+  </script>
+<% end %>

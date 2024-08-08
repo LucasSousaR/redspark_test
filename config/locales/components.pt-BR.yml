@@ -1,0 +1,120 @@
+pt-BR:
+  views:
+    messaging:
+     title: Whatsapp
+    registration:
+      title: Registro
+    confirmation:
+        title: Confirmação
+    department:
+      title: Departamento
+    bot:
+      title: Automação
+    payment:
+      title: Plano
+    home:
+      title: Página Inicial
+    login:
+      title: Faça login para continuar
+    dashboard:
+        title: Dashboard
+    contact:
+        title: Contato
+    calendar:
+        title: "Agendamento"
+    topnavabar:
+      sign_out: Sair
+    sidebar:
+      welcome: Olá, %{name}
+      management: Gerenciando %{name}
+    settings:
+      title: Configurações
+      profile:
+        title: Perfil
+        sub_title: Dados Pessoais
+      account:
+        title: Conta
+        sub_title: Alterar senha
+    reset_password:
+      title: Recuperar conta de usuário
+      sub_title: Insira o endereço de email associado com o seu usuário SmollChat.
+      recover: Recuperar
+      forgot_your_password: Esqueceu sua senha?
+      sucess_titule: E-mail de redefinição de senha enviado
+      sucess: Um e-mail foi enviado para sua caixa de mensagens. Siga as instruções para redefinir sua senha.
+  controllers:
+
+    messagings:
+      one: Mensageria
+      other: Mensagerias
+      child:
+        list: Listar
+        role: Funções
+    departments:
+      one: Departamento
+      other: Departamentos
+    bots:
+      one: Automação
+      other: Automações
+      child:
+        settings: Configuração
+    payments:
+      one: Plano
+      other: Planos
+    roles:
+      one: Função
+      other: Funções
+    contacts:
+      one: Contato
+      other: Contatos
+    dashboards:
+      one: Dashboard
+      other: Dashboard
+    calendars:
+      one: "Agendamento"
+      other: "Agendamentos"
+    companies:
+      one: Empresa
+      other: Empresas
+    users:
+      one: Usuário
+      other: Usuários
+      child:
+        list: Listar
+        role: Funções
+    backoffices:
+      one: Backoffice
+      other: Backoffice
+      child:
+        commissions: Comissões
+        billings: Faturamento
+        mega_data: Cadastro de Mega Data
+        indicators_ila: Cadastro do ILA
+    organizations:
+      one: Organização
+      other: Organizações
+    registrations:
+      one: Registro
+      other: Registros
+    confirmations:
+      one: Confirmação
+      other: Confirmações
+  action:
+    one: 'Ação'
+    other: 'Ações'
+    home: Página inicial
+    index: Listar
+    new: Novo
+    show: Visualizar
+    edit: Editar
+    details: Detalhes
+    borrower: Tomador
+    settings: Configuração
+    password: Redefinir senha
+    account: Conta
+    destroy: Excluir
+    block: Bloquear
+    unblock: Desbloquear
+    manage: Gerenciar
+    search: Pesquisar
+    find_borrower: Selecionar Tomador

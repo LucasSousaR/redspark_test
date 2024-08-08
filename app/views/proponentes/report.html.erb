@@ -1,0 +1,20 @@
+<h1>Relatório de Funcionários</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Faixa Salarial</th>
+    <th>Quantidade</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @faixas.each do |faixa, quantidade| %>
+    <tr>
+      <td><%= faixa %></td>
+      <td><%= quantidade %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= line_chart @faixas.map { |faixa, quantidade| { name: faixa, data: quantidade } } %>

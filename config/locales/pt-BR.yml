@@ -1,0 +1,307 @@
+---
+pt-BR:
+  export:
+    date_created: 'Data de Criação'
+    data_vencimento: 'Data de Vencimento'
+    pag_nome: 'Cliente'
+    pag_documento: 'CPF'
+    movimento_retorno: 'Situação'
+    numero_parcela: 'Número de parcelas'
+    linha_digitavel: 'Linha digitável'
+    nosso_numero: 'Nosso número'
+    total_parcela: ''
+    value: 'Valor'
+    income: 'Renda'
+    rate_of_return: 'Taxa de retorno'
+    lending_rate: 'Taxa de empréstimo'
+    interest_rate: 'Taxa de juros'
+    released_at: 'Data de liberação'
+    paid_at: 'Pago em'
+    total_expenses: 'Total Despesas'
+    requested_value: 'Valor requisitado'
+    number_of_installments: 'Número de parcelas'
+    periodicity: 'Periodicidade'
+    status: 'Status'
+    base_value: 'Valor base'
+    source_base_value: 'Fonte valor base'
+    borrower_type: 'Tipo de tomador'
+    cpf: 'CPF'
+    name: 'Nome'
+    birthday: 'Aniversário'
+    email: 'Email'
+    cep: 'CEP'
+    contract: 'Contrato'
+    created_at: 'Criado em'
+    updated_at: 'Atualizado em'
+    disapproval_reason: 'Motivo da reprovação'
+    rule_log: 'log'
+    role_id_eq: 'Função'
+    statuses:
+      simulation: 'Enquadramento'
+      reproved: 'Reprovado'
+      approved: 'Aprovado'
+      expired: 'Expirado'
+      released: 'Liberado'
+      resend_documents: 'Reenviar documentos'
+      send_documents: 'Enviar documentos'
+      fill_data: 'Preencher dados'
+      under_analysis: 'Em análise'
+      company_analysing: 'Empresa Analisando'
+      awaiting_contract: 'Aguardando contrato'
+    disapproval_reasons:
+      scr: 'SCR não encontrado'
+      scpc: 'SCPC não encontrado'
+      serasa: 'Serasa não encontrado'
+      risk_range: 'Faixa de risco não atende as exigências'
+      age: 'Idade'
+      rating: 'Rating não atende as exigências'
+      social_capital: 'Capital social não atende as exigências'
+      cadastral_renewal: 'Renovação cadastral não atende as exigências'
+      federal_revenue_situation: 'Situação na Receita Federal não atende as exigências'
+      restriction: 'Restrição presente'
+      vehicle_year: 'Ano do veículo não atende as exigências'
+      score: 'Score não atende as exigências'
+      integration_failed: 'Falha na integração (dados faltando)'
+      income_not_found: 'Renda não presente'
+      divergent_company: 'Cooperativa divergente'
+      below_minimum_income: 'Abaixo da renda mínima'
+      without_free_income: 'Renda livre não disponível'
+      without_max_installments: 'Parcela máxima não disponível'
+      zip_code_range: 'CEP fora da região atendida'
+      borrower_age: 'Idade não atende as exigências'
+      bureau_error: 'Erro na consulta do bureau'
+      insufficient_score: 'Score insuficiente'
+      retrictions: 'Restrições presentes'
+      insufficient_income: 'Renda insuficiente'
+      insufficient_income_after_value: 'Renda realocada insuficiente'
+      old_vehicle: 'Idade veicular não atende as exigências'
+      proposal_released_range: 'Usuário com proposta liberada em 180 dias'
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'A validação falhou: %{errors}'
+        restrict_dependent_destroy:
+          has_one: Não é possível excluir o registro pois existe um %{record} dependente
+          has_many: Não é possível excluir o registro pois existem %{record} dependentes
+  date:
+    abbr_day_names:
+    - Dom
+    - Seg
+    - Ter
+    - Qua
+    - Qui
+    - Sex
+    - Sáb
+    abbr_month_names:
+    -
+    - Jan
+    - Fev
+    - Mar
+    - Abr
+    - Mai
+    - Jun
+    - Jul
+    - Ago
+    - Set
+    - Out
+    - Nov
+    - Dez
+    day_names:
+    - Domingo
+    - Segunda-feira
+    - Terça-feira
+    - Quarta-feira
+    - Quinta-feira
+    - Sexta-feira
+    - Sábado
+    formats:
+      api: '%Y-%m-%d %H:%M:%S.%L'
+      default: "%d/%m/%Y"
+      long: "%d de %B de %Y"
+      short: "%d de %B"
+    month_names:
+    -
+    - Janeiro
+    - Fevereiro
+    - Março
+    - Abril
+    - Maio
+    - Junho
+    - Julho
+    - Agosto
+    - Setembro
+    - Outubro
+    - Novembro
+    - Dezembro
+    order:
+    - :day
+    - :month
+    - :year
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: aproximadamente 1 hora
+        other: aproximadamente %{count} horas
+      about_x_months:
+        one: aproximadamente 1 mês
+        other: aproximadamente %{count} meses
+      about_x_years:
+        one: aproximadamente 1 ano
+        other: aproximadamente %{count} anos
+      almost_x_years:
+        one: quase 1 ano
+        other: quase %{count} anos
+      half_a_minute: meio minuto
+      less_than_x_seconds:
+        one: menos de 1 segundo
+        other: menos de %{count} segundos
+      less_than_x_minutes:
+        one: menos de um minuto
+        other: menos de %{count} minutos
+      over_x_years:
+        one: mais de 1 ano
+        other: mais de %{count} anos
+      x_seconds:
+        one: 1 segundo
+        other: "%{count} segundos"
+      x_minutes:
+        one: 1 minuto
+        other: "%{count} minutos"
+      x_days:
+        one: 1 dia
+        other: "%{count} dias"
+      x_months:
+        one: 1 mês
+        other: "%{count} meses"
+      x_years:
+        one: 1 ano
+        other: "%{count} anos"
+    prompts:
+      second: Segundo
+      minute: Minuto
+      hour: Hora
+      day: Dia
+      month: Mês
+      year: Ano
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      accepted: deve ser aceito
+      blank: não pode ficar em branco
+      confirmation: não é igual a %{attribute}
+      empty: não pode ficar vazio
+      equal_to: deve ser igual a %{count}
+      even: deve ser par
+      exclusion: não está disponível
+      greater_than: deve ser maior que %{count}
+      greater_than_or_equal_to: deve ser maior ou igual a %{count}
+      inclusion: não está incluído na lista
+      invalid: não é válido
+      less_than: deve ser menor que %{count}
+      less_than_or_equal_to: deve ser menor ou igual a %{count}
+      model_invalid: 'A validação falhou: %{errors}'
+      not_a_number: não é um número
+      not_an_integer: não é um número inteiro
+      odd: deve ser ímpar
+      other_than: deve ser diferente de %{count}
+      present: deve ficar em branco
+      required: é obrigatório(a)
+      taken: já está em uso
+      too_long:
+        one: 'é muito longo (máximo: 1 caracter)'
+        other: 'é muito longo (máximo: %{count} caracteres)'
+      too_short:
+        one: 'é muito curto (mínimo: 1 caracter)'
+        other: 'é muito curto (mínimo: %{count} caracteres)'
+      wrong_length:
+        one: não possui o tamanho esperado (1 caracter)
+        other: não possui o tamanho esperado (%{count} caracteres)
+    template:
+      body: 'Por favor, verifique o(s) seguinte(s) campo(s):'
+      header:
+        one: 'Não foi possível gravar %{model}: 1 erro'
+        other: 'Não foi possível gravar %{model}: %{count} erros'
+  helpers:
+    select:
+      prompt: Por favor selecione
+    submit:
+      create: Criar %{model}
+      submit: Salvar %{model}
+      update: Atualizar
+  number:
+    currency:
+      format:
+        delimiter: "."
+        format: "%u %n"
+        precision: 2
+        separator: ","
+        significant: false
+        strip_insignificant_zeros: false
+        unit: R$
+    format:
+      delimiter: "."
+      precision: 3
+      separator: ","
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion:
+            one: bilhão
+            other: bilhões
+          million:
+            one: milhão
+            other: milhões
+          quadrillion:
+            one: quatrilhão
+            other: quatrilhões
+          thousand: mil
+          trillion:
+            one: trilhão
+            other: trilhões
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          eb: EB
+          gb: GB
+          kb: KB
+          mb: MB
+          pb: PB
+          tb: TB
+    percentage:
+      format:
+        delimiter: "."
+        format: "%n%"
+    precision:
+      format:
+        delimiter: "."
+  support:
+    array:
+      last_word_connector: " e "
+      two_words_connector: " e "
+      words_connector: ", "
+  time:
+    am: ''
+    formats:
+      normal: '%d/%m/%Y %H:%M'
+      date_only: '%d/%m/%Y'
+      api: '%Y-%m-%d %H:%M:%S.%L'
+      default: "%a, %d de %B de %Y, %H:%M:%S %z"
+      long: "%d de %B de %Y, %H:%M"
+      short: "%d de %B, %H:%M"
+    pm: ''
+
+  will_paginate:
+    previous_label: <
+    next_label: ">"

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+      <title>Teste</title>
+
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="EasyCrédito">
+<!--    <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin">-->
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+
+    <%= stylesheet_link_tag params[:controller] if asset_exist?("#{params[:controller]}.css") %>
+    <%= yield :vendor_css_area %>
+    <!-- =============== APP STYLES ===============-->
+    <%= stylesheet_link_tag 'application', media: 'all', id: "maincss" %>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <%= yield %>
+    </div>
+<!--    <div class="p-lg text-center">-->
+<!--      <span>&copy;</span>-->
+<!--      <span>2016</span>-->
+<!--      <span>-</span>-->
+<!--      <span>Angle</span>-->
+<!--      <br>-->
+<!--      <span>Bootstrap Admin Template</span>-->
+<!--    </div>-->
+
+    <!-- =============== VENDOR SCRIPTS ===============-->
+
+    <!-- =============== VIEW VENDOR SCRIPTS ===============-->
+    <%= javascript_include_tag params[:controller] if asset_exist?("#{params[:controller]}.js") %>
+    <%= yield :vendor_js_area %>
+    <!-- =============== APP SCRIPTS ===============-->
+    <%= javascript_include_tag 'application' %>
+
+    <%= yield :body_area %>
+    <%= notification_flash %>
+
+  </body>
+</html>

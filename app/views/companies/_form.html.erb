@@ -1,0 +1,16 @@
+<%= partial_simple_form_for(@item)do |f| %>
+  <%= f.input :name, required: true %>
+  <%= f.input :cnpj, input_html: { class: 'mask-cnpj' }, required: true %>
+
+
+<% end %>
+
+<script>
+    $(function () {
+        // CNPJ
+        $('.mask-cnpj').inputmask({
+            mask: "99.999.999/9999-99",
+            removeMaskOnSubmit: true
+        });
+    })
+</script>

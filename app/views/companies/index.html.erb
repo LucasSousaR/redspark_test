@@ -1,0 +1,17 @@
+<%= breadcrumb true %>
+
+<%= index_search_form_for @q do |f| %>
+  <%= f.input :id_cont, required: false, as: :string %>
+<% end %>
+<br>
+<%= index_table_for(@items) do |t|
+    t.column :id
+    t.column :name, 'Razão Social' do |i|
+      i.name
+    end
+    t.column :cnpj, 'CNPJ' do |i|
+      format_cnpj(i.cnpj)
+    end
+
+  end
+%>

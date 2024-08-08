@@ -1,0 +1,65 @@
+<div class="container-md">
+  <div class="row">
+    <div class="col-lg-3" >
+      <div class="card b" id="config_block">
+        <div class="card-header bg-gray-lighter text-bold"><%= t('views.settings.title') %></div>
+        <div class="list-group">
+          <a class="list-group-item list-group-item-action active" href="#profile" data-toggle="tab"><%= t('views.settings.profile.title') %></a>
+          <a class="list-group-item list-group-item-action" href="#account" data-toggle="tab"><%= t('views.settings.account.title') %></a>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-9">
+      <div class="tab-content p-0 b0">
+        <div class="tab-pane active" id="profile">
+          <div class="card b">
+            <div class="card-header bg-gray-lighter text-bold"><%= t('views.settings.profile.sub_title') %></div>
+            <div class="card-body">
+              <%= partial_simple_form_for(resource, submit: false, as: resource_name, url: registration_path(resource_name, anchor: 'profile'), wrapper: :basic_form, html: { 'data-parsley-validate': '', multipart: true, id: 'account-form' } )do |f| %>
+
+                <%= f.input :image, as: :file, input_html: { class: 'filestyle', data: { classbutton: 'btn btn-secondary', classinput: 'form-control inline', text: 'Enviar foto de perfil', icon: '<span class="fa fa-upload mr-2"/>' }, direct_upload: true } %>
+                <%= f.input :name %>
+                <%= f.input :email %>
+
+                <%= f.button :submit, t('helpers.submit.user.settings.update_profile'), class: 'btn btn-info' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="account">
+          <div class="card b">
+            <div class="card-header bg-gray-lighter text-bold"><%= t('views.settings.account.sub_title') %></div>
+            <div class="card-body">
+              <%= partial_simple_form_for(resource, submit: false, as: resource_name, url: registration_path(resource_name, anchor: 'account'), defaults: { required: true, placeholder: '******' }, wrapper: :basic_form )do |f| %>
+
+                <%= f.input :current_password, input_html: { autocomplete: 'current-password' } %>
+                <%= f.input :password, input_html: { autocomplete: 'new-password' } %>
+                <%= f.input :password_confirmation, input_html: { autocomplete: 'new-password', 'data-parsley-equalto': '#user_password' } %>
+
+                <%= f.button :submit, t('helpers.submit.user.settings.update_password'), class: 'btn btn-info',id:'butoom_user' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= content_for(:vendor_js_area) do %>
+  <script>
+      $(function () {
+
+          <% if current_user.recover == false ||  current_user.recover == true
+                current_user.recover = true
+                current_user.save!
+          %>
+          $('[id$="config_block"]').css('display', 'none');
+          $('[id$="side_block"]').css('display', 'none');
+
+          <%end %>
+
+
+      });
+  </script>
+<% end %>
