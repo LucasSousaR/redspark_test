@@ -1,9 +1,10 @@
 <%= breadcrumb true %>
 
 <%= index_search_form_for @q do |f| %>
-  <%= f.input :id_cont, required: false, as: :string %>
+  <%= f.input :name_or_cpf_cont, required: false, as: :string %>
 <% end %>
 <br>
+
 <%= index_table_for(@items) do |t|
   t.column :id
   t.column :name, 'Nome' do |i|

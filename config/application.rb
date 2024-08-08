@@ -26,10 +26,23 @@ module InssProject
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
-    # the framework and any gems in your application.
-    #    RenderAsync.configure do |config|
-    #  config.jquery = true # This will render jQuery code, and skip Vanilla JS code
-    #  config.turbolinks = false # Enable this option if you are using Turbolinks 5+
-    #end
+
+    config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      user_name:  ENV['MAILER_USER_NAME'],
+      password: ENV['MAILER_PASSWORD'],
+      domain: ENV['MAILER_DOMAIN'],
+      address: ENV['MAILER_ADDRESS'],
+      port:  ENV['MAILER_PORT'],
+      authentication: :plain,
+      enable_starttls_auto: true
+    }
+
+    RenderAsync.configure do |config|
+      config.jquery = true # This will render jQuery code, and skip Vanilla JS code
+      config.turbolinks = false # Enable this option if you are using Turbolinks 5+
+    end
+
   end
 end

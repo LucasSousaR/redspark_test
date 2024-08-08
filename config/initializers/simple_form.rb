@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 #
 # Uncomment this and change the path if necessary to include your own
 # components.
@@ -9,64 +8,58 @@
 #
 # Use this setup block to configure all options available in SimpleForm.
 SimpleForm.setup do |config|
-  # Wrappers are used by the form builder to generate a
-  # complete input. You can remove any component from the
-  # wrapper, change the order or even add your own to the
-  # stack. The options given below are used to wrap the
-  # whole input.
-  config.wrappers :default, class: :input,
-                            hint_class: :field_with_hint, error_class: :field_with_errors, valid_class: :field_without_errors do |b|
-    ## Extensions enabled by default
-    # Any of these extensions can be disabled for a
-    # given input by passing: `f.input EXTENSION_NAME => false`.
-    # You can make any of these extensions optional by
-    # renaming `b.use` to `b.optional`.
 
-    # Determines whether to use HTML5 (:email, :url, ...)
-    # and required attributes
+  config.wrappers :horizontal_form, form_class: 'form-horizontal', tag: 'div', class: 'form-group row' do |b|
     b.use :html5
-
-    # Calculates placeholders automatically from I18n
-    # You can also pass a string as f.input placeholder: "Placeholder"
     b.use :placeholder
-
-    ## Optional extensions
-    # They are disabled unless you pass `f.input EXTENSION_NAME => true`
-    # to the input. If so, they will retrieve the values from the model
-    # if any exists. If you want to enable any of those
-    # extensions by default, you can change `b.optional` to `b.use`.
-
-    # Calculates maxlength from length validations for string inputs
-    # and/or database column lengths
-    b.optional :maxlength
-
-    # Calculate minlength from length validations for string inputs
-    b.optional :minlength
-
-    # Calculates pattern from format validations for string inputs
-    b.optional :pattern
-
-    # Calculates min and max from length validations for numeric inputs
-    b.optional :min_max
-
-    # Calculates readonly automatically from readonly attributes
-    b.optional :readonly
-
-    ## Inputs
-    # b.use :input, class: 'input', error_class: 'is-invalid', valid_class: 'is-valid'
-    b.use :label_input
-    b.use :hint,  wrap_with: { tag: :span, class: :hint }
-    b.use :error, wrap_with: { tag: :span, class: :error }
-
-    ## full_messages_for
-    # If you want to display the full error message for the attribute, you can
-    # use the component :full_error, like:
-    #
-    # b.use :full_error, wrap_with: { tag: :span, class: :error }
+    b.use :label, class: 'text-bold col-xl-2 col-md-3 col-4 col-form-label text-right'
+    b.wrapper tag: :div, class: 'col-xl-10 col-md-9 col-8' do |component|
+      component.use :input, class: 'form-control'
+    end
   end
 
-  # The default wrapper to be used by the FormBuilder.
-  config.default_wrapper = :default
+  config.wrappers :vertical_form, tag: 'div', class: 'form-group' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.use :label, class: 'control-label'
+    b.wrapper tag: :div do |component|
+      component.use :input, class: 'form-control'
+    end
+  end
+
+  config.wrappers :basic_form, tag: 'div', class: 'form-group' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.use :label
+    b.use :input, class: 'form-control', error_class: 'parsley-error'
+  end
+
+  config.wrappers :checkbox_simple_form do |b|
+    b.use :html5
+    b.use :label
+    b.use :input
+  end
+
+  config.wrappers :checkbox_styled, class: 'checkbox c-checkbox' do |b|
+    b.use :html5
+    b.use :input
+    b.wrapper tag: :span, class: 'fa fa-check' do |compenent2|
+    end
+    b.use :label
+  end
+
+  config.wrappers :login_form, class: 'form-group' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.use :input, class: 'form-control', error_class: 'parsley-error'
+  end
+
+  config.wrappers :radio_form, class: 'form-group' do |b|
+    b.use :html5
+    b.use :label, class: 'checkbox c-checkbox c-checkbox-rounded'
+  end
+
+  config.default_wrapper = :basic_form
 
   # Define the way to render check boxes / radio buttons with labels.
   # Defaults to :nested for bootstrap config.
@@ -75,7 +68,7 @@ SimpleForm.setup do |config|
   config.boolean_style = :nested
 
   # Default class for buttons
-  config.button_class = 'btn'
+  config.button_class = 'btn btn-info'
 
   # Method used to tidy up errors. Specify any Rails Array method.
   # :first lists the first message for each field.
@@ -87,6 +80,9 @@ SimpleForm.setup do |config|
 
   # CSS class to add for error notification helper.
   config.error_notification_class = 'error_notification'
+
+  # ID to add for error notification helper.
+  # config.error_notification_id = nil
 
   # Series of attempts to detect a default label method for collection.
   # config.collection_label_methods = [ :to_label, :name, :title, :to_s ]
@@ -118,7 +114,7 @@ SimpleForm.setup do |config|
   # config.default_form_class = nil
 
   # You can define which elements should obtain additional classes
-  # config.generate_additional_classes_for = [:wrapper, :label, :input]
+  config.generate_additional_classes_for = [:wrapper, :label, :input, :span]
 
   # Whether attributes are required by default (or not). Default is true.
   # config.required_by_default = true
@@ -128,10 +124,10 @@ SimpleForm.setup do |config|
   # in this configuration, which is recommended due to some quirks from different browsers.
   # To stop SimpleForm from generating the novalidate option, enabling the HTML5 validations,
   # change this configuration to true.
-  config.browser_validations = false
+  config.browser_validations = true
 
   # Collection of methods to detect if a file type was given.
-  # config.file_methods = [ :mounted_as, :file?, :public_filename, :attached? ]
+  # config.file_methods = [ :mounted_as, :file?, :public_filename ]
 
   # Custom mappings for input types. This should be a hash containing a regexp
   # to match as key, and the input type that will be used when the field name
@@ -166,6 +162,7 @@ SimpleForm.setup do |config|
 
   # Define the default class of the input wrapper of the boolean input.
   config.boolean_label_class = 'checkbox'
+  config.label_text = lambda { |label, required, explicit_label| label.to_s }
 
   # Defines if the default input wrapper class should be included in radio
   # collection wrappers.
@@ -173,8 +170,4 @@ SimpleForm.setup do |config|
 
   # Defines which i18n scope will be used in Simple Form.
   # config.i18n_scope = 'simple_form'
-
-  # Defines validation classes to the input_field. By default it's nil.
-  # config.input_field_valid_class = 'is-valid'
-  # config.input_field_error_class = 'is-invalid'
 end

@@ -30,4 +30,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  private
+  def current_ability
+    "Abilities::Test".constantize.new(current_user)
+  end
 end

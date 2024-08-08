@@ -12,8 +12,14 @@ Rails.application.routes.draw do
   root to: 'home#index'
   resources :roles
   resources :companies
-
   resources :proponents
+
+  resources :users do
+    patch 'block', on: :member
+    patch 'unblock', on: :member
+    post 'user_block', on: :collection
+    post 'user_unblock', on: :collection
+  end
 
   resources :proponents do
     collection do

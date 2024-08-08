@@ -32,6 +32,7 @@ pt-BR:
       q:
         id_cont: 'Pesquisa por ID'
         name_or_email_cont: 'Pesquisa avançada'
+        name_or_cpf_cont: 'Pesquisa avançada'
         role_id_eq: 'Função'
         date_select_order_status: 'Status do usuário'
         units_id_eq: 'Agências'

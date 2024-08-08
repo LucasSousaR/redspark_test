@@ -12,4 +12,11 @@ class Proponent < ApplicationRecord
   validates :phones, presence: true
   validates :wage, presence: true
 
+
+  scope :name_or_cpf_cont, -> (enum = '') {
+    order("#{enum}": :asc)
+  }
+  def self.ransackable_scopes(auth_object = nil)
+    %i(name_or_cpf_cont)
+  end
 end

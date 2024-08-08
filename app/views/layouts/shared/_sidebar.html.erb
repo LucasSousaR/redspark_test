@@ -21,7 +21,12 @@
 
   <!-- Divider -->
   <hr class="sidebar-divider">
-
+  <% if can?(:manage, Proponent) %>
+    <%= nav_context :proponents, 'Proponentes', icon: 'wrench' do %>
+      <h6 class="collapse-header">Custom Utilities:</h6>
+      <%= active_link_to 'Gerenciar Proponentes', proponents_path, class: 'collapse-item' %>
+    <% end %>
+  <%end %>
 
   <% if can?(:manage, Company) %>
     <%= nav_context :companies, 'Empresas', icon: 'wrench' do %>
