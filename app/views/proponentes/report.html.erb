@@ -8,7 +8,7 @@
   </tr>
   </thead>
   <tbody>
-  <% @faixas.each do |faixa, quantidade| %>
+  <% @tracks.each do |faixa, quantidade| %>
     <tr>
       <td><%= faixa %></td>
       <td><%= quantidade %></td>
@@ -17,4 +17,4 @@
   </tbody>
 </table>
 
-<%= line_chart @faixas.map { |faixa, quantidade| { name: faixa, data: quantidade } } %>
+<%= line_chart @tracks.map { |faixa, quantidade| { name: faixa, data: quantidade } } %>

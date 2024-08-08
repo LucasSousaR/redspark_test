@@ -1,16 +1,14 @@
 module ActiveLinkToHelper
-  def active_link_to(*args)
+  def active_link_to(*args, &block)
     if block_given?
-      link_to args[0], *options_with_active_class(args, true) do
-        yield
-      end
+      link_to args[0], *options_with_active_class(args, true), &block
     else
       link_to args[0], args[1], *options_with_active_class(args, false)
     end
   end
 
   def add_active_class(option)
-    return 'active' if active_link?(option)
+    'active' if active_link?(option)
   end
 
   def active_link?(option)
@@ -20,14 +18,12 @@ module ActiveLinkToHelper
 
     return current_page?(option[:path]) if option[:path]
 
-    if option[:starting_with]
-      return request.path.start_with? option[:starting_with]
-    end
+    return request.path.start_with? option[:starting_with] if option[:starting_with]
 
-    if option[:includes]
-      includes = [option[:includes]].flatten
-      return includes.any? { |elem| request.path.include? elem }
-    end
+    return unless option[:includes]
+
+    includes = [option[:includes]].flatten
+    includes.any? { |elem| request.path.include? elem }
   end
 
   private
@@ -45,6 +41,6 @@ module ActiveLinkToHelper
       'active'
     end
 
-    options.map {|k,v| {k => v}}
+    options.map { |k, v| { k => v } }
   end
 end

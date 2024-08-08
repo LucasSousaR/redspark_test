@@ -4,22 +4,12 @@
     <%= f.input :email %>
 
 
-    <%#= f.input :fancy_name %>
-    <%#= f.input :company_name %>
-    <%#= f.input :cnpj %>
-
-
     <%  if action_name != 'show' %>
       <%= f.input :password %>
       <%= f.input :password_confirmation %>
       <%= f.association :role, collection: Role.accessible_by(current_ability).all, prompt: true %>
     <% end %>
     <%= f.association :companies, collection: Company.accessible_by(current_ability).all, prompt: true %>
-    <%#= f.association :dealer,collection: User.accessible_by(current_ability).joins(:role).where("roles.code = 'reseller'").all.map{ |i| [i.name, i.id] }, include_blank: 'Todos', prompt: true %>
-    <%#= f.association :seller,collection: User.accessible_by(current_ability).joins(:role).where("roles.code = 'seller'").all.map{ |i| [i.name, i.id] }, include_blank: 'Todos', prompt: true%>
-    <%#= f.association :reseller, collection: User.accessible_by(current_ability).joins(:role).where("roles.code = 'reseller'").all.map{ |i| [i.name, i.id] }, include_blank: 'Todos', prompt: true %>
-
-
 
 
 <% end %>

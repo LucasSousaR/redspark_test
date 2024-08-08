@@ -1,49 +1,73 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Template</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Test - Lucas</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script type='text/javascript' src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <body id="page-top">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-    <div id="wrapper">
-      <%= render  "layouts/shared/sidebar" %>
+<body id="page-top">
 
-      <div id="content-wrapper" class="d-flex flex-column">
+<div id="wrapper">
+  <%if current_user.present?  %>
+    <%= render  "layouts/shared/sidebar" %>
+  <%end %>
+  <div id="content-wrapper" class="d-flex flex-column">
 
-        <div id="content">
-          <%= render "layouts/shared/topbar" %>
-
-          <div class="container-fluid">
-            <%= yield %>
-          </div>
+    <div id="content">
+      <%if current_user.present?  %>
+        <%= render "layouts/shared/topbar" %>
+      <%end %>
+      <%if current_user.present?  %>
+        <div class="container-fluid">
+          <%= yield %>
         </div>
+      <%else %>
+        <%= yield %>
+      <% end %>
 
-        <footer class="sticky-footer bg-white">
-          <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-              <span>Copyright &copy; Your Website 2019</span>
-            </div>
-          </div>
-        </footer>
-
-      </div>
 
     </div>
+    <%if current_user.present?  %>
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Test 2024</span>
+          </div>
+        </div>
+      </footer>
+    <% end %>
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-      <i class="fas fa-angle-up"></i>
-    </a>
 
-    <%= render "layouts/shared/logout_modal" %>
-  </body>
+  </div>
+
+</div>
+<%if current_user.present?  %>
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <%= render "layouts/shared/logout_modal" %>
+
+<% end %>
+
+<%= notification_flash if flash.present? %>
+<%= notification_errors if @item && @item.errors.any? %>
+<%= yield :body_area %>
+<%= content_for :render_async %>
+
+</body>
 </html>

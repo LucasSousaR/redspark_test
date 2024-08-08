@@ -34,6 +34,20 @@ import './shared/demo/chart-bar-demo'
 import './shared/demo/chart-pie-demo'
 
 
+document.addEventListener("turbolinks:load", () => {
+    const wageInput = document.getElementById('proponent_salary');
+    if (wageInput) {
+        wageInput.addEventListener('blur', (event) => {
+            const wage = event.target.value;
+            fetch(`/proponentes/calculate_inss?wage=${wage}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('proponent_discount_inss').value = data.discount_inss;
+                });
+        });
+    }
+});
+
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.

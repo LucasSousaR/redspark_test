@@ -1,30 +1,33 @@
-class AtualizaSalarioJob < ApplicationJob
+class UpdateSalaryJob < ApplicationJob
   queue_as :default
 
-  def perform(proponente_id, novo_salario)
-    proponente = Proponente.find(proponente_id)
-    proponente.update(salario: novo_salario, desconto_inss: calcular_inss(novo_salario))
+  def perform(proponent_id, new_salary)
+    proponent = Proponent.find(proponent_id)
+    proponent.update(wage: new_salary, discount_inss: calcular_inss(new_salary))
   end
 
   private
 
-  def calcular_inss(salario)
-    faixas = [
-      { limite: 1045.00, aliquota: 0.075 },
-      { limite: 2089.60, aliquota: 0.09 },
-      { limite: 3134.40, aliquota: 0.12 },
-      { limite: 6101.06, aliquota: 0.14 }
+
+  def calcular_inss(wage)
+
+    tracks = [
+      { limit: 1045.00, aliquot: 0.075 },
+      { limit: 2089.60, aliquot: 0.09 },
+      { limit: 3134.40, aliquot: 0.12 },
+      { limit: 6101.06, aliquot: 0.14 }
     ]
 
     desconto = 0
-    faixas.each do |faixa|
-      if salario > faixa[:limite]
-        desconto += (faixa[:limite] - (faixa[:anterior_limite] || 0)) * faixa[:aliquota]
+
+    tracks.each do |track|
+      if wage > track[:limit]
+        desconto += (track[:limit] - (track[:previous_limit] || 0)) * track[:aliquot]
       else
-        desconto += (salario - (faixa[:anterior_limite] || 0)) * faixa[:aliquota]
+        desconto += (wage - (track[:previous_limit] || 0)) * track[:aliquot]
         break
       end
-      faixa[:anterior_limite] = faixa[:limite]
+      track[:previous_limit] = track[:limit]
     end
     desconto
   end

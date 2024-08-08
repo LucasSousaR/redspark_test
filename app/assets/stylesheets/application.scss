@@ -1,3 +1,19 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require toastr/toastr.scss
+ *= require_tree .
+ *= require_self
+ */
 $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 @import '@fortawesome/fontawesome-free/scss/fontawesome';
 @import '@fortawesome/fontawesome-free/scss/brands';
@@ -7,3 +23,206 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 @import "datatables.net-bs4/css/dataTables.bootstrap4.min";
 
 @import "./shared/sb-admin-2";
+
+$gray-light:                              #e4eaec;
+$navbar-height:                           55px;
+$body-bg:                                 #f5f7fa;
+$aside-wd:                                220px;
+$aside-wd-collapsed:                      70px;
+$aside-wd-collapsed-text:                 90px;
+$aside-bg:                                #fff;
+$content-bg:                              $body-bg;
+$content-heading-bg:                      #fafbfc;
+$content-heading-border:                  #cfdbe2;
+$content-padding:                         20px;
+$footer-hg:                               60px;
+$navbar-hg:                               $navbar-height;
+$boxed-max-width:                         1140px;
+$z-index-main-section:                    111;
+$headings-line-height:                    1.1;
+$text-muted:                              #909FA7;
+
+.toast-error {
+  color: #ffffff !important;
+  background-color: #bd362f !important;
+}
+.toast-warning {
+  color: #ffffff !important;
+  background-color: #f89406!important;
+}
+.toast-success {
+  color: #ffffff !important;
+  background-color: #51a351 !important;
+}
+.bg-gradient-primary {
+  background-color: #3b0079;
+  background-image: linear-gradient(180deg, #3b0079 10%, #190232 100%);
+  background-size: cover;
+}
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  list-style: none;
+  background-color: #85879600;
+  border-radius: 0.35rem;
+}
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  overflow-x: hidden;
+  &.ng-leave {
+    display: none;
+  }
+  // Contains the main sidebar
+  .aside-container {
+    // visibility: hidden;
+    position: absolute;
+    width: $aside-wd;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: $z-index-main-section + 5; // @include transition(visibility 0s linear .3s);
+    backface-visibility: hidden;
+    background-color: $aside-bg;
+
+    .aside-inner {
+      padding-top: $navbar-hg;
+      height: 100%;
+      width: $aside-wd;
+      overflow: hidden;
+    }
+
+    .nav-floating {
+
+      // position: handled from directive
+      left: inherit;
+      margin-left: $aside-wd;
+      z-index: $z-index-main-section * 10;
+
+      min-width: 190px;
+      overflow: auto;
+    }
+  }
+  // Contains the main content
+  .section-container {
+    position: relative;
+    height: 100%;
+    margin-left: 0; // overflow: hidden;
+    z-index: $z-index-main-section;
+    background-color: $content-bg;
+    margin-bottom: $footer-hg !important; // ensure a space for the footer
+  } // Page Footer
+  .footer-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: $footer-hg;
+    border-top: 1px solid $gray-light;
+    padding: $content-padding;
+    z-index: $z-index-main-section - 2;
+    font-size: .875rem;
+    p {
+      margin: 0;
+    }
+  }
+}
+.modal-open .wrapper {
+  z-index: 0;
+}
+.content-wrapper {
+  padding: 15px;
+  width: 100%; // styling to visually wrap the component
+  border-top: 1px solid rgba(0, 0, 0, .15);
+  margin-top: -1px;
+
+  .unwrap {
+    margin: -15px; // expand over wrapper padding
+    @include media-breakpoint-up(md) {
+      margin: -20px; // expand over wrapper padding
+    }
+  }
+
+  .content-heading {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    line-height: $headings-line-height;
+    color: #929292;
+    margin: -15px;
+    margin-bottom: 20px;
+    padding: 15px;
+    font-weight: normal;
+    background-color: $content-heading-bg;
+    border-bottom: 1px solid $content-heading-border;
+    small {
+      display: block;
+      font-size: 12px;
+      color: $text-muted;
+    }
+  }
+
+  .container,
+  .container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  @include media-breakpoint-up(md) {
+    padding: $content-padding; //overflow: auto; // required for portlets
+    .content-heading {
+      margin: -$content-padding;
+      margin-bottom: $content-padding;
+      padding: $content-padding;
+      button,
+      .btn {
+        margin: 0;
+      }
+    }
+  }
+}
+
+.layout-fixed {
+
+  @media (max-width: $boxed-max-width) {
+    &.aside-toggled,
+    &.offsidebar-open {
+      overflow-y: hidden;
+    }
+  }
+
+  .wrapper {
+    .topnavbar-wrapper {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: $z-index-main-section + 10;
+    }
+    .aside-container,
+    .offsidebar {
+      position: fixed;
+    }
+    /* only applied to sidebar */
+    .aside-container {
+      /* safari fix */
+      height: 1px;
+      min-height: 100%;
+      /* ios blanks space fix */
+      .aside-inner {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+      }
+    }
+    .section-container {
+      margin-top: $navbar-hg;
+    }
+  }
+}
+
+.block-center { margin: 0 auto; }

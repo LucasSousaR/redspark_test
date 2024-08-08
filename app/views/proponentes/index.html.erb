@@ -1,0 +1,17 @@
+<%= breadcrumb true %>
+
+<%= index_search_form_for @q do |f| %>
+  <%= f.input :id_cont, required: false, as: :string %>
+<% end %>
+<br>
+<%= index_table_for(@items) do |t|
+  t.column :id
+  t.column :name, 'Nome' do |i|
+    i.name
+  end
+  t.column :cpf, 'CPF' do |i|
+    format_cpf(i.cpf)
+  end
+
+end
+%>

@@ -46,7 +46,7 @@ class UsersController < ApplicationController
     if status == 'locked_at'
       params_to_search['date_select_order_status'] = 'locked_at'
     end
-    @rows = params[:page] || 10
+    @rows = params[:page] || 5
     @q = model_name.ransack(params_to_search)
     if status == 'locked_at_unlock'
       @items = @q.result(distinct: true).accessible_by(current_ability).where(locked_at: nil ).page(params[:page]).per_page(@rows).order(id: :desc)
@@ -181,7 +181,7 @@ class UsersController < ApplicationController
       :password,
       :password_confirmation,
       :role_id,
-      company_ids: []
+      :company_id
 
     )
   end
