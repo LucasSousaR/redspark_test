@@ -1,17 +1,70 @@
-<%= form_with(model: proponent, local: true) do |form| %>
-  <% if proponent.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(proponent.errors.count, "error") %> prohibited this proponent from being saved:</h2>
+<%= partial_simple_form_for(@item)do |f| %>
+  <div class="row">
 
-      <ul>
-      <% proponent.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <div class="col-xl-4">
+      <%= f.input :name,disabled: action_name == 'edit', required: true %>
     </div>
-  <% end %>
+    <div class="col-xl-4">
+      <%= f.input :cpf, disabled: action_name == 'edit',input_html: { class: 'mask-cpf' }, required: true %>
+    </div>
+    <div class="col-xl-4">
+      <%= f.input :birthday,disabled: action_name == 'edit', as: :single_datepicker, input_html: { 'data-date-start-date': '-100y', 'data-date-end-date': '0d' }, required: true %>
+    </div>
+    <div class="col-xl-4">
+      <%= f.input :phone, disabled: action_name == 'edit',input_html: { class: 'mask-cellphone' }, required: true %>
+    </div>
+    <div class="col-xl-4">
+      <%= f.input :wage,disabled: action_name == 'edit',  input_html: { class: 'mask-currency', value: 0 }, required: true %>
+    </div>
+    <div class="col-xl-4">
+      <%= f.input :discount_inss, input_html: { class: 'mask-currency', value: 0 }, disabled: true %>
+    </div>
 
-  <div class="actions">
-    <%= form.submit %>
+
+
+
+
+
+  <%= f.input :cep,disabled: action_name == 'edit',  input_html: { class: 'mask-cep' }, required: true %>
+  <%= f.input :street, disabled: action_name == 'edit', required: true %>
+  <%= f.input :number, disabled: action_name == 'edit', required: true %>
+  <%= f.input :district,disabled: action_name == 'edit', required: true %>
+  <%= f.input :city, disabled: action_name == 'edit', required: true %>
+  <%= f.input :state,disabled: action_name == 'edit',  required: true %>
   </div>
+
+
 <% end %>
+
+<script>
+    $(function () {
+        // CNPJ
+        $('.mask-cpf').inputmask({
+            mask: "999.999.999-99",
+            removeMaskOnSubmit: true
+        });
+        // Currency
+        $('.mask-currency').inputmask( 'currency',{
+            autoUnmask: true,
+            radixPoint:",",
+            groupSeparator: ".",
+            allowMinus: true,
+            prefix: 'R$ ',
+            digits: 2,
+            digitsOptional: false,
+            rightAlign: false,
+            placeholder: '0,00',
+            unmaskAsNumber: true,
+            removeMaskOnSubmit: true,
+        });
+        // CEP
+        $('.mask-cep').inputmask({
+            mask: "99999-999",
+            removeMaskOnSubmit: true
+        });
+        // Cell Phone
+        $('.mask-cellphone').inputmask({
+            mask: '(99) 99999-9999'
+        });
+    })
+</script>

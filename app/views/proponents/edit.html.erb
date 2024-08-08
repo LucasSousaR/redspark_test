@@ -1,6 +1,7 @@
-<h1>Editing Proponente</h1>
+<%= breadcrumb %>
 
-<%= render 'form', proponent: @proponent %>
-
-<%= link_to 'Show', @proponent %> |
-<%= link_to 'Back', proponents_path %>
+<div class="card card-default">
+  <div class="card-body">
+    <%= render partial: "#{controller_path}/form" %>
+  </div>
+</div>

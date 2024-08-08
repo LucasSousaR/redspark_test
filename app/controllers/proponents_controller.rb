@@ -6,11 +6,12 @@ class ProponentsController < ApplicationController
     params_index = params.permit!
     params_to_search = params_index[:q] || {}
 
-    @rows = params[:page] || 5
+    page = params[:page].to_i == 0 ? 5 : params[:page].to_i
+    @rows = page  || 5
 
     @q = model_name.ransack(params_to_search)
 
-    @items = @q.result(distinct: true).accessible_by(current_ability).page(params[:page]).per_page(@rows).order(id: :desc)
+    @items = @q.result(distinct: true).accessible_by(current_ability).page(page).per_page(@rows).order(id: :desc)
 
   end
 
@@ -123,7 +124,7 @@ class ProponentsController < ApplicationController
                                       :city,
                                       :state,
                                       :cep,
-                                      :phones,
+                                      :phone,
                                       :wage,
                                       :discount_inss)
   end

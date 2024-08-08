@@ -112,8 +112,9 @@ module ApplicationHelper
       end
     end
 
-
-    # content + collection.blank? ? nil : paginate(collection)
+    Rails.logger.debug "Collection class: #{collection.class}"
+    Rails.logger.debug "Collection value: #{collection.inspect}"
+    #content + collection.blank? ? nil : paginate(collection)
     content + paginate(collection)
   end
 
