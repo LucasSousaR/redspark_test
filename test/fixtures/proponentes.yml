@@ -10,7 +10,7 @@ one:
   city: MyString
   state: MyString
   cep: MyString
-  phones: MyText
+  phone: MyText
   wage: 9.99
   discount_inss: 9.99
 
@@ -24,6 +24,6 @@ two:
   city: MyString
   state: MyString
   cep: MyString
-  phones: MyText
+  phone: MyText
   wage: 9.99
   discount_inss: 9.99

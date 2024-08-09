@@ -11,9 +11,11 @@
  * It is generally better to create a new file per style scope.
  *
  *= require toastr/toastr.scss
+ *= require bootstrap-datetimepicker
  *= require_tree .
  *= require_self
  */
+
 $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 @import '@fortawesome/fontawesome-free/scss/fontawesome';
 @import '@fortawesome/fontawesome-free/scss/brands';
@@ -66,7 +68,7 @@ $text-muted:                              #909FA7;
   padding: 0.75rem 1rem;
   margin-bottom: 1rem;
   list-style: none;
-  background-color: #eaecf400;
+  background-color: #eaecf400 !important;
   border-radius: 0.35rem;
 }
 .wrapper {

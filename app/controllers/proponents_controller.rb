@@ -1,17 +1,17 @@
 class ProponentsController < ApplicationController
   before_action :set_items, only: %i[show edit update destroy]
-
+  include ApplicationHelper
   # GET /proponentes or /proponentes.json
   def index
     params_index = params.permit!
     params_to_search = params_index[:q] || {}
 
-    page = params[:page].to_i == 0 ? 5 : params[:page].to_i
-    @rows = page  || 5
+
+     @rows = params[:page] || 1
 
     @q = model_name.ransack(params_to_search)
 
-    @items = @q.result(distinct: true).accessible_by(current_ability).page(page).per_page(@rows).order(id: :desc)
+    @items = @q.result(distinct: true).accessible_by(current_ability).paginate(per_page: 5, page: @rows).order(id: :desc)
 
   end
 
@@ -29,22 +29,25 @@ class ProponentsController < ApplicationController
   # POST /proponentes or /proponentes.json
   def create
     @item = Proponent.new(proponent_params)
-
+    @item.discount_inss = calcular_inss(proponent_params[:wage].to_f)
     respond_to do |format|
-      if @proponent.save
-        format.html { redirect_to proponent_url(@proponent), notice: "Proponente was successfully created." }
-        format.json { render :show, status: :created, location: @proponent }
+      if @item.save
+        format.html { redirect_to proponent_url(@item), notice: "Proponente was successfully created." }
+        format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @proponent.errors, status: :unprocessable_entity }
+        format.json { render json: @item.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # PATCH/PUT /proponentes/1 or /proponentes/1.json
   def update
+
     respond_to do |format|
+      proponent_params.merge!(discount_inss: calcular_inss(proponent_params[:wage].to_f))
       if @item.update(proponent_params)
+
         format.html { redirect_to proponent_url(@item), notice: 'Proponente was successfully updated.' }
         format.json { render :show, status: :ok, location: @item }
       else
@@ -59,7 +62,7 @@ class ProponentsController < ApplicationController
     @item.destroy
 
     respond_to do |format|
-      format.html { redirect_to proponente_url, notice: "Proponente was successfully destroyed." }
+      format.html { redirect_to proponent_url, notice: "Proponente was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -67,18 +70,10 @@ class ProponentsController < ApplicationController
   def calculate_inss
     wage = params[:wage].to_f
     discount_inss = calcular_inss(wage)
-    render json: { discount_inss: discount_inss }
+    render json: { discount_inss: discount_inss.round(2) }
   end
 
-  def report
 
-    @tracks = {
-      'Até R$ 1.045,00' => Proponent.where('wage <= ?', 1045.00).count,
-      'De R$ 1.045,01 a R$ 2.089,60' => Proponent.where('wage > ? AND wage <= ?', 1045.00, 2089.60).count,
-      'De R$ 2.089,61 até R$ 3.134,40' => Proponent.where('wage > ? AND wage <= ?', 2089.60, 3134.40).count,
-      'De R$ 3.134,41 até R$ 6.101,06' => Proponent.where('wage > ? AND wage <= ?', 3134.40, 6101.06).count
-    }
-  end
 
   private
 
@@ -107,7 +102,12 @@ class ProponentsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_items
-    @item = model_name.find(params[:id])
+    if params[:id] == "calculate_inss"
+      calculate_inss
+    else
+      @item = model_name.find(params[:id])
+    end
+
   end
   def model_name
     Proponent

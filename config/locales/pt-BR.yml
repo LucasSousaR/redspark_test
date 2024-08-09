@@ -117,6 +117,7 @@ pt-BR:
     formats:
       api: '%Y-%m-%d %H:%M:%S.%L'
       default: "%d/%m/%Y"
+      date_only: '%d/%m/%Y'
       long: "%d de %B de %Y"
       short: "%d de %B"
     month_names:

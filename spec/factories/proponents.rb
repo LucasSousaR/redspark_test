@@ -9,7 +9,7 @@ FactoryBot.define do
     city { "Cidade C" }
     state { "Estado D" }
     cep { "12345-678" }
-    phones { "1234567890" }
+    phone { "1234567890" }
     wage { 3000.00 }
     discount_inss { 281.62 }
   end

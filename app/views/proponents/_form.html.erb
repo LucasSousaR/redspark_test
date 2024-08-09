@@ -1,43 +1,79 @@
+
+
 <%= partial_simple_form_for(@item)do |f| %>
-  <div class="row">
+  <div class="row ">
 
-    <div class="col-xl-4">
-      <%= f.input :name,disabled: action_name == 'edit', required: true %>
-    </div>
-    <div class="col-xl-4">
-      <%= f.input :cpf, disabled: action_name == 'edit',input_html: { class: 'mask-cpf' }, required: true %>
-    </div>
-    <div class="col-xl-4">
-      <%= f.input :birthday,disabled: action_name == 'edit', as: :single_datepicker, input_html: { 'data-date-start-date': '-100y', 'data-date-end-date': '0d' }, required: true %>
-    </div>
-    <div class="col-xl-4">
-      <%= f.input :phone, disabled: action_name == 'edit',input_html: { class: 'mask-cellphone' }, required: true %>
-    </div>
-    <div class="col-xl-4">
-      <%= f.input :wage,disabled: action_name == 'edit',  input_html: { class: 'mask-currency', value: 0 }, required: true %>
-    </div>
-    <div class="col-xl-4">
-      <%= f.input :discount_inss, input_html: { class: 'mask-currency', value: 0 }, disabled: true %>
+    <div class="col-xl-12">
+      <h2>Dados Pessoais</h2>
     </div>
 
+    <hr>
+    <div class="col-xl-4">
+      <%= f.input :name,disabled: action_name == 'show', required: true %>
+    </div>
+    <div class="col-xl-4">
+      <%= f.input :cpf, disabled: action_name == 'show',input_html: { class: 'mask-cpf' }, required: true %>
+    </div>
+
+    <div class="col-xl-4">
+      <div class="input-daterange">
+        <%= f.input :birthday,  as: :string, disabled: action_name == 'show',input_html: { 'data-date-start-date': '-100y', 'data-date-end-date': '0d' ,value: f.object.birthday.nil? ? l(Date.today) : l(f.object.birthday, format: :date_only) },  required: true %>
+
+      </div>
+    </div>
+    <div class="col-xl-4">
+      <%= f.input :phone, disabled: action_name == 'show',input_html: { class: 'mask-cellphone' }, required: true %>
+    </div>
+    <div class="col-xl-4">
+      <%= f.input :wage,as: :string, disabled: action_name == 'show',  input_html: { class: 'mask-currency', value:  f.object.wage.nil? ? 0 : f.object.wage }, required: true %>
+    </div>
+    <div class="col-xl-4">
+      <%= f.input :discount_inss, as: :string, input_html: { class: 'mask-currency', value:  f.object.discount_inss.nil? ? 0 : f.object.discount_inss }, disabled: true %>
+    </div>
+    <div class="col-xl-12">
+      <h2>Dados Residenciais</h2>
+    </div>
+
+    <hr>
+    <div class="col-xl-4">
+      <%= f.input :cep,disabled: action_name == 'show',  input_html: { class: 'mask-cep' }, required: true %>
+    </div>
+
+    <div class="col-xl-4">
+      <%= f.input :street, disabled: action_name == 'show', required: true %>
+    </div>
+    <div class="col-xl-4">
+      <%= f.input :number, input_html: {}, disabled: action_name == 'show', required: true %>
+    </div>
+    <div class="col-xl-4">
+      <%= f.input :district,disabled: action_name == 'show', required: true %>
+    </div>
+    <div class="col-xl-4">
+      <%= f.input :city, disabled: action_name == 'show', required: true %>
+    </div>
+    <div class="col-xl-4">
+      <%= f.input :state,disabled: action_name == 'show',  required: true %>
+    </div>
 
 
 
 
 
-  <%= f.input :cep,disabled: action_name == 'edit',  input_html: { class: 'mask-cep' }, required: true %>
-  <%= f.input :street, disabled: action_name == 'edit', required: true %>
-  <%= f.input :number, disabled: action_name == 'edit', required: true %>
-  <%= f.input :district,disabled: action_name == 'edit', required: true %>
-  <%= f.input :city, disabled: action_name == 'edit', required: true %>
-  <%= f.input :state,disabled: action_name == 'edit',  required: true %>
+
+
   </div>
 
 
 <% end %>
 
 <script>
+
     $(function () {
+        // Number
+        $('.mask-number').inputmask({
+            mask: "9",
+            repeat: 20
+        });
         // CNPJ
         $('.mask-cpf').inputmask({
             mask: "999.999.999-99",
@@ -66,5 +102,33 @@
         $('.mask-cellphone').inputmask({
             mask: '(99) 99999-9999'
         });
+
+        $('[id$="proponent_wage"]').on('change', function () {
+
+            $.ajax({
+                type: "GET",
+                global: false,
+                data: {
+                    wage: $("[id$='proponent_wage']").val()
+                },
+                url: "<%= url_for(action: 'calculate_inss') %>",
+                success: function(response){
+                    console.log(response);
+                    document.getElementById('proponent_discount_inss').value = response.discount_inss;
+
+                }
+            });
+        }).trigger('change');
+
+        $('.input-daterange input').each(function() {
+            $(this).datepicker({
+                clearDates: true,
+                zIndexOffset: 9999,
+                format: 'dd/mm/yyyy',
+                language: 'pt-BR'
+            }).trigger('update');
+        });
+
     })
+
 </script>

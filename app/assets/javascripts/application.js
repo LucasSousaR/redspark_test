@@ -15,6 +15,8 @@
 //= require turbolinks
 //= require bootstrap-filestyle
 //= require toastr/toastr.js
+//= require bootstrap-datetimepicker
+//= require pickers
 //= require jquery
 //= require jquery3
 //= require jquery_ujs

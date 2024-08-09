@@ -9,7 +9,7 @@ class Proponent < ApplicationRecord
   validates :city, presence: true
   validates :state, presence: true
   validates :cep, presence: true
-  validates :phones, presence: true
+  validates :phone, presence: true
   validates :wage, presence: true
 
 

@@ -109,6 +109,10 @@ gem 'jquery-rails'
 gem 'rails-ujs', '~> 0.1.0'
 gem 'dotenv-rails', '~> 2.7', '>= 2.7.2', require: 'dotenv/rails-now'
 gem 'bootstrap-filestyle-rails'
+gem 'bootstrap-datepicker-rails'
+gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 gem 'seed_dump'
+gem "chartkick"
+gem 'groupdate'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

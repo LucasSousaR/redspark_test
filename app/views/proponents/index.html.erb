@@ -13,6 +13,8 @@
   t.column :cpf, 'CPF' do |i|
     format_cpf(i.cpf)
   end
-
+  t.column :discount_inss, 'Desconto INSS' do |i|
+    "R$ #{i.discount_inss.to_f.round(2)}"
+  end
 end
 %>

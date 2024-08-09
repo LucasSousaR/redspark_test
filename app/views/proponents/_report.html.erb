@@ -1,0 +1,28 @@
+<h1>Relatório de Funcionários</h1>
+
+<div class="tab-pane" id="proposals" role="tabpanel">
+
+  <%= line_chart @tracks, xtitle: "Faixas Salariais", ytitle: "Quantidade de Proponentes", colors: ["#4285F4"], height: "500px" %>
+
+  <div class="table-responsive">
+    <table class="table">
+      <thead class="bg-gray-lighter">
+      <tr>
+        <th>Faixa Salarial</th>
+        <th>Quantidade</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @tracks.each do |faixa, quantidade| %>
+        <tr>
+          <td><%= faixa %></td>
+          <td><%= quantidade %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+

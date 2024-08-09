@@ -33,7 +33,7 @@ end
    city: Faker::Address.city,
    state: Faker::Address.state,
    cep: Faker::Address.zip_code,
-   phones: Faker::PhoneNumber.cell_phone,
+   phone: Faker::PhoneNumber.cell_phone,
    wage: rand(1000..6000) # Gera um número inteiro
   )
 end

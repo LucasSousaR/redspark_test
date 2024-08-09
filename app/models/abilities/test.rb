@@ -12,8 +12,8 @@ module Abilities
           can :manage, Company
           can :manage, Proponent
 
-          can :index, Role, code: ['operational']
-          can :index, User, code: ['operational']
+          can :index, Role, code: ['operational','admin']
+          can :index, User, code: ['operational','admin']
           can :search_companies, Company
 
           #can :index, Notification
@@ -27,9 +27,10 @@ module Abilities
           can :read, :dashboards
           can [:graphics, :graphic_resellers], :dashboard
 
+          can :manage, Proponent
 
           cannot :index, Company, id: user.company_id
-          cannot :manage, [Company,  User, Role, ]
+          cannot :manage, [Company,  User, Role ]
 
 
 
